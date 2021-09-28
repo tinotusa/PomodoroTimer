@@ -54,7 +54,6 @@ private extension TasksModel  {
 
     func save() {
         do {
-            print(tasks)
             let data = try JSONEncoder().encode(tasks)
             UserDefaults.standard.set(data, forKey: Self.saveKey)
         } catch {
@@ -69,11 +68,5 @@ private extension TasksModel  {
         } catch {
             print(error)
         }
-    }
-}
-
-extension Array where Element: Identifiable {
-    func firstIndex(of element: Element) -> Int? {
-        self.firstIndex(where: { $0.id == element.id} )
     }
 }

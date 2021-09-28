@@ -16,6 +16,8 @@ struct CountdownTimer: View {
     @State private var trimAmount = 0.0
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
+    @EnvironmentObject var notificationManager: NotificationManager
+    
     var body: some View {
         ZStack {
             Circle()
@@ -76,6 +78,7 @@ private extension CountdownTimer {
     
     var playButton: some View {
         Button {
+            notificationManager.requestAuthorization()
             isCounting.toggle()
             if !isCounting {
                 let hours = timeRemaining / (60 * 60)
@@ -86,8 +89,10 @@ private extension CountdownTimer {
                 self.hours = hours == 0 ? "" : String(format: "%02d", hours)
                 self.minutes = minutes == 0 ? "" : String(format: "%02d", minutes)
                 self.seconds = seconds == 0 ? "" : String(format: "%02d", seconds)
+                notificationManager.removeNotification()
             } else {
                 timeRemaining = timeSetInSeconds
+                notificationManager.addNotification(timeInterval: Double(timeRemaining))
             }
         } label: {
             Image(systemName: isCounting ? "pause.fill" : "play.fill")
@@ -107,6 +112,7 @@ struct CountdownTimer_Previews: PreviewProvider {
                 .ignoresSafeArea()
             CountdownTimer()
         }
+        .environmentObject(NotificationManager())
         
     }
 }

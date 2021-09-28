@@ -16,6 +16,8 @@
 		21490C4D2702DFA0006D0E55 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C4C2702DFA0006D0E55 /* TaskRowView.swift */; };
 		21490C4F2702DFDC006D0E55 /* TaskBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C4E2702DFDC006D0E55 /* TaskBox.swift */; };
 		21490C522702E45E006D0E55 /* Toggle+RadioCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */; };
+		21490C5527030494006D0E55 /* Array+firstIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C5427030494006D0E55 /* Array+firstIndex.swift */; };
+		21490C5827030B0E006D0E55 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C5727030B0E006D0E55 /* NotificationManager.swift */; };
 		219D09A227029778002BACA9 /* TimeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D09A127029778002BACA9 /* TimeInputView.swift */; };
 		219D09A42702A4F3002BACA9 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D09A32702A4F3002BACA9 /* CountdownTimer.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +33,8 @@
 		21490C4C2702DFA0006D0E55 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		21490C4E2702DFDC006D0E55 /* TaskBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBox.swift; sourceTree = "<group>"; };
 		21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+RadioCheckbox.swift"; sourceTree = "<group>"; };
+		21490C5427030494006D0E55 /* Array+firstIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+firstIndex.swift"; sourceTree = "<group>"; };
+		21490C5727030B0E006D0E55 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		219D09A127029778002BACA9 /* TimeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputView.swift; sourceTree = "<group>"; };
 		219D09A32702A4F3002BACA9 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +69,7 @@
 		2142821F2701CC9F00F38F03 /* PomodoroTimer */ = {
 			isa = PBXGroup;
 			children = (
+				21490C5627030B00006D0E55 /* Managers */,
 				214282202701CC9F00F38F03 /* PomodoroTimerApp.swift */,
 				214282222701CC9F00F38F03 /* ContentView.swift */,
 				21490C462702DEC4006D0E55 /* Models */,
@@ -106,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */,
+				21490C5427030494006D0E55 /* Array+firstIndex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,6 +123,14 @@
 				219D09A32702A4F3002BACA9 /* CountdownTimer.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		21490C5627030B00006D0E55 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				21490C5727030B0E006D0E55 /* NotificationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		219D09A02702976C002BACA9 /* Views */ = {
@@ -202,7 +216,9 @@
 				21490C522702E45E006D0E55 /* Toggle+RadioCheckbox.swift in Sources */,
 				219D09A42702A4F3002BACA9 /* CountdownTimer.swift in Sources */,
 				21490C4A2702DEE7006D0E55 /* TasksModel.swift in Sources */,
+				21490C5827030B0E006D0E55 /* NotificationManager.swift in Sources */,
 				21490C4D2702DFA0006D0E55 /* TaskRowView.swift in Sources */,
+				21490C5527030494006D0E55 /* Array+firstIndex.swift in Sources */,
 				21490C4F2702DFDC006D0E55 /* TaskBox.swift in Sources */,
 				21490C482702DECC006D0E55 /* Task.swift in Sources */,
 				214282232701CC9F00F38F03 /* ContentView.swift in Sources */,

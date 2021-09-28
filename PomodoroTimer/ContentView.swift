@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var hours = ""
-    @State private var minutes = ""
-    @State private var seconds = ""
+    @State private var minutes = "25"
+    @State private var seconds = "00"
     @State private var isCounting = false
     @StateObject var tasksModel = TasksModel()
     
@@ -29,13 +29,6 @@ struct ContentView: View {
     }
 }
 
-private extension ContentView {
-    var countdownTime: some View {
-        Text("20:00")
-    }
-    
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -46,5 +39,6 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("Dark mode")
         }
         .environmentObject(TasksModel())
+        .environmentObject(NotificationManager())
     }
 }
