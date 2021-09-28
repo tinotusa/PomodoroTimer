@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @State private var hours = ""
     @State private var minutes = ""
     @State private var seconds = ""
     @State private var isCounting = false
+    @StateObject var tasksModel = TasksModel()
     
     var body: some View {
         ZStack {
@@ -20,8 +22,9 @@ struct ContentView: View {
 
             VStack {
                 CountdownTimer()
-//                TaskBox()
+                TaskBox()
             }
+            .padding(.horizontal)
         }
     }
 }
@@ -35,10 +38,13 @@ private extension ContentView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .previewDisplayName("Default mode")
-        ContentView()
-            .preferredColorScheme(.dark)
-            .previewDisplayName("Dark mode")
+        Group {
+            ContentView()
+                .previewDisplayName("Default mode")
+            ContentView()
+                .preferredColorScheme(.dark)
+                .previewDisplayName("Dark mode")
+        }
+        .environmentObject(TasksModel())
     }
 }
