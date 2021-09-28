@@ -11,24 +11,23 @@ struct ContentView: View {
     @State private var hours = ""
     @State private var minutes = ""
     @State private var seconds = ""
+    @State private var isCounting = false
     
     var body: some View {
         ZStack {
             Color("background")
                 .ignoresSafeArea()
-            VStack {
-                TimeInputView(
-                    hours: $hours,
-                    minutes: $minutes,
-                    seconds: $seconds
-                )
-            }
+
+            CountdownTimer()
         }
     }
 }
 
 private extension ContentView {
-
+    var countdownTime: some View {
+        Text("20:00")
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
