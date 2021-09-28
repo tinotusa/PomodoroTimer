@@ -68,6 +68,7 @@
 				214282202701CC9F00F38F03 /* PomodoroTimerApp.swift */,
 				214282222701CC9F00F38F03 /* ContentView.swift */,
 				21490C462702DEC4006D0E55 /* Models */,
+				21490C502702E441006D0E55 /* Extensions */,
 				219D09A02702976C002BACA9 /* Views */,
 				214282242701CCA000F38F03 /* Assets.xcassets */,
 				214282262701CCA000F38F03 /* Preview Content */,
@@ -109,13 +110,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		21490C532702EA34006D0E55 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				219D09A127029778002BACA9 /* TimeInputView.swift */,
+				219D09A32702A4F3002BACA9 /* CountdownTimer.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		219D09A02702976C002BACA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				21490C502702E441006D0E55 /* Extensions */,
+				21490C532702EA34006D0E55 /* Timer */,
 				21490C4B2702DF96006D0E55 /* Task */,
-				219D09A127029778002BACA9 /* TimeInputView.swift */,
-				219D09A32702A4F3002BACA9 /* CountdownTimer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

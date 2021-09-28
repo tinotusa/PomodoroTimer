@@ -34,17 +34,12 @@ struct CountdownTimer: View {
             }
         }
         .onReceive(timer) { _ in
-            if isPaused || timeRemaining == 0 { return }
+            if isPaused { return }
+            if  timeRemaining == 0 {
+                // send notification
+                return
+            }
             timeRemaining -= 1
-        }
-        .onChange(of: hours) { _ in
-            timeRemaining = timeSetInSeconds
-        }
-        .onChange(of: minutes) { _ in
-            timeRemaining = timeSetInSeconds
-        }
-        .onChange(of: seconds) { _ in
-            timeRemaining = timeSetInSeconds
         }
     }
 }
@@ -64,6 +59,7 @@ private extension CountdownTimer {
         let minutes = remainingSeconds / 60
         remainingSeconds = remainingSeconds % 60
         let seconds = remainingSeconds
+        
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
@@ -79,6 +75,8 @@ private extension CountdownTimer {
                 self.hours = hours == 0 ? "" : String(format: "%02d", hours)
                 self.minutes = minutes == 0 ? "" : String(format: "%02d", minutes)
                 self.seconds = seconds == 0 ? "" : String(format: "%02d", seconds)
+            } else {
+                timeRemaining = timeSetInSeconds
             }
         } label: {
             Image(systemName: isCounting ? "pause.fill" : "play.fill")

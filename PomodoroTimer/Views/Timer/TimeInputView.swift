@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 extension Text {
     func largeBoldFont() -> Text {
@@ -63,6 +64,12 @@ struct TimeInputView: View {
                 .onChange(of: text) { text in
                     if text.count > 2 {
                         self.text = String(text.prefix(2))
+                    }
+                }
+                .onReceive(Just(text)) { newValue in
+                    let filtered = newValue.filter { "0123456789".contains($0) }
+                    if newValue != filtered {
+                        self.text = filtered
                     }
                 }
                 .foregroundColor(Color("text"))

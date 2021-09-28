@@ -18,7 +18,9 @@ struct TaskRowView: View {
             Toggle("Mark completed", isOn: $task.isComplete)
                 .toggleStyle(.radioCheckbox)
             if isEditing {
-                TextField("name", text: $task.name)
+                TextField("name", text: $task.name) { isEditing in
+                    self.isEditing = isEditing
+                }
             } else {
                 Text(task.name)
             }
