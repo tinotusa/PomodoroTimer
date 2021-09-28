@@ -27,8 +27,8 @@ struct TaskRowView: View {
             Spacer()
             deleteButton
         }
-        .padding(.bottom)
-        .padding(.horizontal)
+        .padding()
+        .background(isEvenRow ? Color("background").opacity(0.2) : .clear)
         .onTapGesture {
             isEditing = true
         }
@@ -36,6 +36,10 @@ struct TaskRowView: View {
 }
 
 private extension TaskRowView {
+    var isEvenRow: Bool {
+        tasksModel.firstIndex(of: task)! % 2 == 0
+    }
+    
     var deleteButton: some View {
         Button {
             withAnimation {

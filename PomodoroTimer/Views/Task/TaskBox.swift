@@ -32,7 +32,6 @@ struct TaskBox: View {
                     ForEach($tasksModel.tasks) { $task in
                         TaskRowView(task: $task)
                     }
-                    .onDelete(perform: tasksModel.delete)
                 }
                 Spacer()
             }

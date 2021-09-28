@@ -35,8 +35,8 @@ final class TasksModel: ObservableObject {
         }
     }
     
-    func delete(offsets: IndexSet) {
-        
+    func firstIndex(of task: Task) -> Int? {
+        tasks.firstIndex(of: task)
     }
 }
 
