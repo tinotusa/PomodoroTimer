@@ -37,7 +37,10 @@ struct TaskRowView: View {
 
 private extension TaskRowView {
     var isEvenRow: Bool {
-        tasksModel.firstIndex(of: task)! % 2 == 0
+        if let index = tasksModel.firstIndex(of: task) {
+            return index % 2 == 0
+        }
+        return false
     }
     
     var deleteButton: some View {

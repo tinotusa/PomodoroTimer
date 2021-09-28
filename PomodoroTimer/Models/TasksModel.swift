@@ -9,7 +9,15 @@ import Foundation
 
 final class TasksModel: ObservableObject {
     // model
-    @Published var tasks: [Task] = []
+    @Published var tasks: [Task] = [] {
+        didSet {
+            save()
+        }
+    }
+    
+    init() {
+        load()
+    }
     
     // MARK: - Computed properties
     var totalTasks: Int {
@@ -37,6 +45,30 @@ final class TasksModel: ObservableObject {
     
     func firstIndex(of task: Task) -> Int? {
         tasks.firstIndex(of: task)
+    }
+}
+
+// MARK: - Load and Save functionality
+private extension TasksModel  {
+    static let saveKey = "TasksModel.UserDefaults"
+
+    func save() {
+        do {
+            print(tasks)
+            let data = try JSONEncoder().encode(tasks)
+            UserDefaults.standard.set(data, forKey: Self.saveKey)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func load() {
+        do {
+            guard let data = UserDefaults.standard.data(forKey: Self.saveKey) else { return }
+            tasks = try JSONDecoder().decode([Task].self, from: data)
+        } catch {
+            print(error)
+        }
     }
 }
 
