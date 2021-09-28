@@ -14,6 +14,8 @@ struct CountdownTimer: View {
     @State private var isCounting = false
     @State private var timeRemaining = 0
     @State private var trimAmount = 0.0
+    @State private var dateLast = Date()
+    
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
     @EnvironmentObject var notificationManager: NotificationManager
@@ -45,7 +47,6 @@ struct CountdownTimer: View {
             if !isCounting { return }
             if  timeRemaining == 0 {
                 isCounting = false
-                // send notification
                 return
             }
             
@@ -53,6 +54,19 @@ struct CountdownTimer: View {
             withAnimation(.linear(duration: 1)) {
                 trimAmount = Double(timeRemaining) / Double(timeSetInSeconds)
             }
+        }
+        .appDidEnterBackground {
+            isCounting = false
+            dateLast = Date()
+        }
+        .appWillEnterForeground {
+            isCounting = true
+            let timeElapsed = Date().timeIntervalSince(dateLast)
+            if timeElapsed <= 0  {
+                timeRemaining = 0
+                return
+            }
+            timeRemaining -= Int(timeElapsed)
         }
     }
 }

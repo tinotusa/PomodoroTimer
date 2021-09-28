@@ -18,6 +18,7 @@
 		21490C522702E45E006D0E55 /* Toggle+RadioCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */; };
 		21490C5527030494006D0E55 /* Array+firstIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C5427030494006D0E55 /* Array+firstIndex.swift */; };
 		21490C5827030B0E006D0E55 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C5727030B0E006D0E55 /* NotificationManager.swift */; };
+		21490C5A27031E90006D0E55 /* View+AppNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21490C5927031E90006D0E55 /* View+AppNotifications.swift */; };
 		219D09A227029778002BACA9 /* TimeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D09A127029778002BACA9 /* TimeInputView.swift */; };
 		219D09A42702A4F3002BACA9 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D09A32702A4F3002BACA9 /* CountdownTimer.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+RadioCheckbox.swift"; sourceTree = "<group>"; };
 		21490C5427030494006D0E55 /* Array+firstIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+firstIndex.swift"; sourceTree = "<group>"; };
 		21490C5727030B0E006D0E55 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		21490C5927031E90006D0E55 /* View+AppNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AppNotifications.swift"; sourceTree = "<group>"; };
 		219D09A127029778002BACA9 /* TimeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputView.swift; sourceTree = "<group>"; };
 		219D09A32702A4F3002BACA9 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 			children = (
 				21490C512702E45E006D0E55 /* Toggle+RadioCheckbox.swift */,
 				21490C5427030494006D0E55 /* Array+firstIndex.swift */,
+				21490C5927031E90006D0E55 /* View+AppNotifications.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				21490C5827030B0E006D0E55 /* NotificationManager.swift in Sources */,
 				21490C4D2702DFA0006D0E55 /* TaskRowView.swift in Sources */,
 				21490C5527030494006D0E55 /* Array+firstIndex.swift in Sources */,
+				21490C5A27031E90006D0E55 /* View+AppNotifications.swift in Sources */,
 				21490C4F2702DFDC006D0E55 /* TaskBox.swift in Sources */,
 				21490C482702DECC006D0E55 /* Task.swift in Sources */,
 				214282232701CC9F00F38F03 /* ContentView.swift in Sources */,
