@@ -9,10 +9,6 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var hours = ""
-    @State private var minutes = "25"
-    @State private var seconds = "00"
-    @State private var isCounting = false
     @StateObject var tasksModel = TasksModel()
     
     var body: some View {

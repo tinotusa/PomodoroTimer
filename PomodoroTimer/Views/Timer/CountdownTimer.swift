@@ -9,29 +9,37 @@ import SwiftUI
 
 struct CountdownTimer: View {
     @State private var hours = ""
-    @State private var minutes = ""
-    @State private var seconds = ""
+    @State private var minutes = "25"
+    @State private var seconds = "00"
     @State private var isCounting = false
     @State private var timeRemaining = 0
-    @State private var trimAmount = 0.0
+    @State private var progress = 0.0
     @State private var dateLast = Date()
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
     @EnvironmentObject var notificationManager: NotificationManager
     
+    private let size = 380.0
+    
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color("foreground").opacity(0.2), lineWidth: 5)
-            
+                .stroke(Color("foreground").opacity(0.2), lineWidth: 10)
+                
             Circle()
-                .trim(from: trimAmount, to: 1)
+                .trim(from: progress == 0 ? 1 : progress, to: 1)
                 .stroke(Color("foreground"), lineWidth: 10)
                 .rotationEffect(.degrees(-90))
                 .rotation3DEffect(.degrees(180), axis: (0, 1, 0))
             
-            
+            Circle()
+                .frame(width: 30, height: 30)
+                .foregroundColor(Color("foreground"))
+                .offset(y: -size / 2)
+                .rotationEffect(.degrees(360.0 * progress))
+                .rotation3DEffect(.degrees(180), axis: (0, 1, 0))
+
             VStack {
                 if !isCounting {
                     TimeInputView(hours: $hours, minutes: $minutes, seconds: $seconds)
@@ -43,6 +51,7 @@ struct CountdownTimer: View {
                 playButton
             }
         }
+        .frame(width: size, height: size)
         .onReceive(timer) { _ in
             if !isCounting { return }
             if  timeRemaining == 0 {
@@ -52,7 +61,7 @@ struct CountdownTimer: View {
             
             timeRemaining -= 1
             withAnimation(.linear(duration: 1)) {
-                trimAmount = Double(timeRemaining) / Double(timeSetInSeconds)
+                progress = Double(timeRemaining) / Double(timeSetInSeconds)
             }
         }
         .appDidEnterBackground {
@@ -106,6 +115,7 @@ private extension CountdownTimer {
                 notificationManager.removeNotification()
             } else {
                 timeRemaining = timeSetInSeconds
+                progress = Double(timeRemaining) / Double(timeSetInSeconds)
                 notificationManager.addNotification(timeInterval: Double(timeRemaining))
             }
         } label: {
