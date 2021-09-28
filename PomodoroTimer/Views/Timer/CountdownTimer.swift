@@ -13,14 +13,20 @@ struct CountdownTimer: View {
     @State private var seconds = ""
     @State private var isCounting = false
     @State private var timeRemaining = 0
-    @State private var isPaused = false
-    
+    @State private var trimAmount = 0.0
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color("foreground"), lineWidth: 3)
+                .stroke(Color("foreground").opacity(0.2), lineWidth: 5)
+            
+            Circle()
+                .trim(from: trimAmount, to: 1)
+                .stroke(Color("foreground"), lineWidth: 10)
+                .rotationEffect(.degrees(-90))
+                .rotation3DEffect(.degrees(180), axis: (0, 1, 0))
+            
             
             VStack {
                 if !isCounting {
@@ -34,12 +40,17 @@ struct CountdownTimer: View {
             }
         }
         .onReceive(timer) { _ in
-            if isPaused { return }
+            if !isCounting { return }
             if  timeRemaining == 0 {
+                isCounting = false
                 // send notification
                 return
             }
+            
             timeRemaining -= 1
+            withAnimation(.linear(duration: 1)) {
+                trimAmount = Double(timeRemaining) / Double(timeSetInSeconds)
+            }
         }
     }
 }
