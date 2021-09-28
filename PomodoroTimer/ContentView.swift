@@ -18,7 +18,10 @@ struct ContentView: View {
             Color("background")
                 .ignoresSafeArea()
 
-            CountdownTimer()
+            VStack {
+                CountdownTimer()
+//                TaskBox()
+            }
         }
     }
 }
