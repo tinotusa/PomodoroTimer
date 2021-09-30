@@ -35,9 +35,9 @@ struct TaskBox: View {
                 }
                 Spacer()
             }
+            
             addButton
                 .padding()
-                
         }
     }
 }

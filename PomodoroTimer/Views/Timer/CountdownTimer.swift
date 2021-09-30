@@ -96,7 +96,11 @@ private extension CountdownTimer {
         let minutes = remainingSeconds / 60
         remainingSeconds = remainingSeconds % 60
         let seconds = remainingSeconds
-        
+        if hours.isZero && minutes.isZero {
+            return String(format: "%02d", seconds)
+        } else if hours.isZero {
+            return String(format: "%02d:%02d", minutes, seconds)
+        }
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     

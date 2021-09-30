@@ -21,21 +21,21 @@ struct ContentView: View {
             Color("background")
                 .ignoresSafeArea()
 
-            VStack {
-                CountdownTimer(
-                    hours: $hours,
-                    minutes: $minutes,
-                    seconds: $seconds,
-                    isCounting: $isCounting
-                )
-                HStack {
-                    restButton
-                    Spacer()
-                    defaultTimeButton
+                VStack {
+                    CountdownTimer(
+                        hours: $hours,
+                        minutes: $minutes,
+                        seconds: $seconds,
+                        isCounting: $isCounting
+                    )
+                    HStack {
+                        restButton
+                        Spacer()
+                        defaultTimeButton
+                    }
+                    TaskBox()
                 }
-                TaskBox()
-            }
-            .padding(.horizontal)
+                .padding(.horizontal)
         }
     }
 }
