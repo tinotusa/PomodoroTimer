@@ -35,9 +35,6 @@ struct TaskBox: View {
                 }
                 Spacer()
             }
-            
-            addButton
-                .padding()
         }
     }
 }
@@ -48,6 +45,7 @@ private extension TaskBox {
             Text("Tasks")
             Spacer()
             Text("\(tasksModel.completeTasks)/\(tasksModel.totalTasks)")
+            addButton
         }
         .padding()
         .font(.title)
@@ -63,29 +61,14 @@ private extension TaskBox {
     }
     
     var addButton: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Button {
-                    let task = Task(name: "new task")
-                    tasksModel.add(task)
-                } label: {
-                    Image(systemName: "plus")
-                        .padding()
-                        .background(Color("foreground"))
-                        .foregroundColor(Color("text"))
-                        .clipShape(Circle())
-                        .shadow(
-                            color: .black.opacity(0.4),
-                            radius: 5,
-                            x: 0,
-                            y: 6
-                        )
-                }
-            }
+        Button {
+            let task = Task(name: "new task")
+            tasksModel.add(task)
+        } label: {
+            Image(systemName: "plus")
+                .font(.subheadline)
+                .menuButtonStyle()
         }
-        
     }
 }
 
