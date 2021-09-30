@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CountdownTimer: View {
-    @State private var hours = ""
-    @State private var minutes = "25"
-    @State private var seconds = "00"
-    @State private var isCounting = false
+    @Binding var hours: String
+    @Binding var minutes: String
+    @Binding var seconds: String
+    
+    @Binding var isCounting: Bool
     @State private var timeRemaining = 0
     @State private var progress = 0.0
     @State private var dateLast = Date()
@@ -134,7 +135,12 @@ struct CountdownTimer_Previews: PreviewProvider {
         ZStack {
             Color("background")
                 .ignoresSafeArea()
-            CountdownTimer()
+            CountdownTimer(
+                hours: .constant("0"),
+                minutes: .constant("20"),
+                seconds: .constant("0"),
+                isCounting: .constant(false)
+            )
         }
         .environmentObject(NotificationManager())
         
