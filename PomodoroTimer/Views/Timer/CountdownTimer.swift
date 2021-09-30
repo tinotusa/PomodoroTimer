@@ -15,7 +15,7 @@ struct CountdownTimer: View {
     @Binding var isCounting: Bool
     @State private var timeRemaining = 0
     @State private var progress = 0.0
-    @State private var dateLast = Date()
+    @State private var dateLast: Date?
     @Environment(\.scenePhase) var scenePhase
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
@@ -56,15 +56,16 @@ struct CountdownTimer: View {
         .onChange(of: scenePhase) { phase in
             switch phase {
             case  .active:
-                let timeElapsed = Date().timeIntervalSince(dateLast)
-                if timeElapsed <= 0.5  {
-                    timeRemaining = 0
+                if dateLast == nil { return }
+                let timeElapsed = dateLast!.timeIntervalSince(Date())
+                print(timeElapsed)
+                if timeElapsed <= 0  {
+                    resetCountdown()
                     return
                 }
                 timeRemaining -= Int(timeElapsed)
                 isCounting = true
             case .background:
-                print("here")
                 isCounting = false
                 dateLast = Date()
             default: break
@@ -86,6 +87,14 @@ struct CountdownTimer: View {
 }
 
 private extension CountdownTimer {
+    func resetCountdown() {
+        timeRemaining = 0
+        hours = ""
+        minutes = ""
+        seconds = ""
+        progress = 0.0
+    }
+    
     var timeSetInSeconds: Int {
         let hours = (Int(hours) ?? 0) * 60 * 60
         let minutes = (Int(minutes) ?? 0) * 60
