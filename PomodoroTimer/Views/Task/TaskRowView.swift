@@ -12,6 +12,7 @@ struct TaskRowView: View {
     
     @Binding var task: Task
     @State private var isEditing = false
+    @FocusState private var focused: Bool
     
     var body: some View {
         HStack {
@@ -21,6 +22,15 @@ struct TaskRowView: View {
                 TextField("name", text: $task.name) { isEditing in
                     self.isEditing = isEditing
                 }
+                .focused($focused)
+                .task {
+                    focused = true
+                }
+                
+                Image(systemName: "pencil")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color("text"))
             } else {
                 Text(task.name)
             }
@@ -29,8 +39,12 @@ struct TaskRowView: View {
         }
         .padding()
         .background(isEvenRow ? Color("background").opacity(0.2) : .clear)
+        .contentShape(Rectangle())
         .onTapGesture {
-            isEditing = true
+            withAnimation {
+                isEditing = true
+            }
+            focused = true
         }
     }
 }
@@ -58,7 +72,12 @@ private extension TaskRowView {
 
 struct TaskRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskRowView(task: .constant(Task(name: "prewview name")))
-            .environmentObject(TasksModel())
+        ZStack {
+            Color("foreground")
+                .ignoresSafeArea()
+            TaskRowView(task: .constant(Task(name: "prewview name")))
+                .environmentObject(TasksModel())
+        }
+        
     }
 }
