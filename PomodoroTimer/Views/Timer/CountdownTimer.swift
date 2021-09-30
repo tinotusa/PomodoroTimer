@@ -16,7 +16,7 @@ struct CountdownTimer: View {
     @State private var timeRemaining = 0
     @State private var progress = 0.0
     @State private var dateLast = Date()
-    
+    @Environment(\.scenePhase) var scenePhase
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     
     @EnvironmentObject var notificationManager: NotificationManager
@@ -53,6 +53,23 @@ struct CountdownTimer: View {
             }
         }
         .frame(width: size, height: size)
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case  .active:
+                let timeElapsed = Date().timeIntervalSince(dateLast)
+                if timeElapsed <= 0.5  {
+                    timeRemaining = 0
+                    return
+                }
+                timeRemaining -= Int(timeElapsed)
+                isCounting = true
+            case .background:
+                print("here")
+                isCounting = false
+                dateLast = Date()
+            default: break
+            }
+        }
         .onReceive(timer) { _ in
             if !isCounting { return }
             if  timeRemaining == 0 {
@@ -64,19 +81,6 @@ struct CountdownTimer: View {
             withAnimation(.linear(duration: 1)) {
                 progress = Double(timeRemaining) / Double(timeSetInSeconds)
             }
-        }
-        .appDidEnterBackground {
-            isCounting = false
-            dateLast = Date()
-        }
-        .appWillEnterForeground {
-            isCounting = true
-            let timeElapsed = Date().timeIntervalSince(dateLast)
-            if timeElapsed <= 0  {
-                timeRemaining = 0
-                return
-            }
-            timeRemaining -= Int(timeElapsed)
         }
     }
 }
