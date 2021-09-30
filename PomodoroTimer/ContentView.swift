@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// global constant
+let isSmallDevice = UIScreen.main.bounds.width <= 320.0
 
 struct ContentView: View {
     @StateObject var tasksModel = TasksModel()
@@ -15,7 +17,7 @@ struct ContentView: View {
     @State private var minutes = ""
     @State private var seconds = ""
     @State private var isCounting = false
-
+    
     var body: some View {
         ZStack {
             Color("background")
@@ -37,6 +39,7 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
         }
+        .font(isSmallDevice ? .system(size: 20) : .title)
     }
 }
 
@@ -55,7 +58,9 @@ private extension ContentView {
             Button("20 minutes") { setTime(minutes: 20) }
         } label: {
             Text("Rest")
+                .font(isSmallDevice ? .system(size: 16) : .title)
                 .menuButtonStyle()
+                
         }
     }
     
@@ -66,6 +71,7 @@ private extension ContentView {
             Button("1 hour") { setTime(hours: 1) }
         } label: {
             Text("Session time")
+                .font(isSmallDevice ? .system(size: 16) : .title)
                 .menuButtonStyle()
         }
     }

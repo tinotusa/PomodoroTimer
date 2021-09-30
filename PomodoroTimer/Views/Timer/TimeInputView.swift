@@ -9,10 +9,10 @@ import SwiftUI
 import Combine
 
 extension Text {
-    func largeBoldFont() -> Text {
+    func largeBoldFont(isSmallDevice: Bool = false) -> Text {
         self
             .bold()
-            .font(.largeTitle)
+            .font(isSmallDevice ? .title : .largeTitle)
             .foregroundColor(Color("text"))
     }
 }
@@ -23,13 +23,13 @@ struct TimeInputView: View {
     @Binding var seconds: String
     
     var body: some View {
-        HStack {
+        HStack(spacing: isSmallDevice ? 0 : 10){
             TimeInputBox(type: .hours, text: $hours)
             Text(":")
-                .largeBoldFont()
+                .largeBoldFont(isSmallDevice: isSmallDevice)
             TimeInputBox(type: .minutes, text: $minutes)
             Text(":")
-                .largeBoldFont()
+                .largeBoldFont(isSmallDevice: isSmallDevice)
             TimeInputBox(type: .seconds, text: $seconds)
         }
         .foregroundColor(Color("text"))
@@ -48,7 +48,9 @@ struct TimeInputView: View {
         var height: Double = 70.0
         
         private let radius = 15.0
-        
+        private let smallWidth = 55.0
+        private let smallHeight = 20.0
+
         @State private var isEditing = false
         
         var body: some View {
@@ -73,11 +75,14 @@ struct TimeInputView: View {
                     }
                 }
                 .foregroundColor(Color("text"))
-                .font(.largeTitle)
+                .font(isSmallDevice ? .system(size: 12) : .largeTitle)
                 .keyboardType(.numberPad)
                 .padding()
             }
-            .frame(width: width, height: height)
+            .frame(
+                width:  isSmallDevice ? smallWidth : width,
+                height: isSmallDevice ? smallHeight : height
+            )
         }
     }
 }

@@ -36,6 +36,7 @@ struct TaskBox: View {
                 Spacer()
             }
         }
+        .font(isSmallDevice ? .system(size: 20) : .title)
     }
 }
 
@@ -48,7 +49,7 @@ private extension TaskBox {
             addButton
         }
         .padding()
-        .font(.title)
+        .font(isSmallDevice ? .system(size: 14) : .title)
         .foregroundColor(Color("text"))
     }
     

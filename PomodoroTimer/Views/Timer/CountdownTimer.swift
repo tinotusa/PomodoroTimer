@@ -22,6 +22,7 @@ struct CountdownTimer: View {
     @EnvironmentObject var notificationManager: NotificationManager
     
     private let size = 380.0
+    private let smallSize = 200.0
     
     var body: some View {
         ZStack {
@@ -37,22 +38,29 @@ struct CountdownTimer: View {
             Circle()
                 .frame(width: 30, height: 30)
                 .foregroundColor(Color("foreground"))
-                .offset(y: -size / 2)
+                .offset(y: (isSmallDevice ? smallSize : size) / -2)
                 .rotationEffect(.degrees(360.0 * progress))
                 .rotation3DEffect(.degrees(180), axis: (0, 1, 0))
 
             VStack {
+                Spacer()
+                Spacer()
                 if !isCounting {
                     TimeInputView(hours: $hours, minutes: $minutes, seconds: $seconds)
                 } else {
                     Text("\(timeRemainingString)")
-                        .font(.system(size: 80))
+                        .font(.system(size: isSmallDevice ? 40 : 80))
                         .foregroundColor(Color("text"))
                 }
+                Spacer()
                 playButton
+                Spacer()
             }
         }
-        .frame(width: size, height: size)
+        .frame(
+            width: isSmallDevice ? smallSize : size,
+            height: isSmallDevice ? smallSize : size
+        )
         .onChange(of: scenePhase) { phase in
             switch phase {
             case  .active:
@@ -140,7 +148,10 @@ private extension CountdownTimer {
             Image(systemName: isCounting ? "pause.fill" : "play.fill")
                 .resizable()
                 .foregroundColor(Color("foreground"))
-                .frame(width: 60, height: 60)
+                .frame(
+                    width: isSmallDevice ? 30 : 60,
+                    height: isSmallDevice ? 30 : 60
+                )
                 .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 7)
         }
         .disabled(timeSetInSeconds == 0)

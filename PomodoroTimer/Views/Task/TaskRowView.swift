@@ -37,6 +37,7 @@ struct TaskRowView: View {
             Spacer()
             deleteButton
         }
+        .font(isSmallDevice ? .system(size: 16) : .title)
         .padding()
         .background(isEvenRow ? Color("background").opacity(0.2) : .clear)
         .contentShape(Rectangle())
@@ -64,7 +65,7 @@ private extension TaskRowView {
             }
         } label: {
             Image(systemName: "trash")
-                .font(.title)
+                .font(isSmallDevice ? .system(size: 20) : .title)
                 .foregroundColor(Color("text"))
         }
     }
