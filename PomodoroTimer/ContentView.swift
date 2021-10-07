@@ -11,7 +11,7 @@ import SwiftUI
 let isSmallDevice = UIScreen.main.bounds.width <= 320.0
 
 struct ContentView: View {
-    @StateObject var tasksModel = TasksModel()
+    @StateObject var tasksModel = TasksViewModel()
 
     @State private var hours = ""
     @State private var minutes = ""
@@ -85,7 +85,7 @@ struct ContentView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewDisplayName("Dark mode")
         }
-        .environmentObject(TasksModel())
+        .environmentObject(TasksViewModel())
         .environmentObject(NotificationManager())
     }
 }

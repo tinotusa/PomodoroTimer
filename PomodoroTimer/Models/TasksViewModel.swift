@@ -1,5 +1,5 @@
 //
-//  TasksModel.swift
+//  TasksViewModel.swift
 //  PomodoroTimer
 //
 //  Created by Tino on 28/9/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class TasksModel: ObservableObject {
+final class TasksViewModel: ObservableObject {
     // model
     @Published var tasks: [Task] = [] {
         didSet {
@@ -49,7 +49,7 @@ final class TasksModel: ObservableObject {
 }
 
 // MARK: - Load and Save functionality
-private extension TasksModel  {
+private extension TasksViewModel  {
     static let saveKey = "TasksModel.UserDefaults"
 
     func save() {

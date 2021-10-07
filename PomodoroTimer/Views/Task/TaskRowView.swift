@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskRowView: View {
-    @EnvironmentObject var tasksModel: TasksModel
+    @EnvironmentObject var tasksModel: TasksViewModel
     
     @Binding var task: Task
     @State private var isEditing = false
@@ -77,7 +77,7 @@ struct TaskRowView_Previews: PreviewProvider {
             Color("foreground")
                 .ignoresSafeArea()
             TaskRowView(task: .constant(Task(name: "prewview name")))
-                .environmentObject(TasksModel())
+                .environmentObject(TasksViewModel())
         }
         
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct PomodoroTimerApp: App {
-    @StateObject var tasksModel = TasksModel()
+    @StateObject var tasksModel = TasksViewModel()
     @StateObject var notificationManager = NotificationManager()
     var body: some Scene {
         WindowGroup {

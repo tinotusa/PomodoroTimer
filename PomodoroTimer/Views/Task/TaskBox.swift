@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskBox: View {
-    @EnvironmentObject var tasksModel: TasksModel
+    @EnvironmentObject var tasksModel: TasksViewModel
     
     var body: some View {
         ZStack {
@@ -81,6 +81,6 @@ struct TaskBox_Previews: PreviewProvider {
             TaskBox()
                 .previewDevice("iPod touch (7th generation)")
         }
-        .environmentObject(TasksModel())
+        .environmentObject(TasksViewModel())
     }
 }
