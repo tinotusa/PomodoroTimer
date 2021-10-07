@@ -36,6 +36,7 @@ struct TaskBox: View {
                 Spacer()
             }
         }
+        .frame(height: isSmallDevice ? 300 : 400)
         .font(isSmallDevice ? .system(size: 20) : .title)
     }
 }
@@ -75,7 +76,11 @@ private extension TaskBox {
 
 struct TaskBox_Previews: PreviewProvider {
     static var previews: some View {
-        TaskBox()
-            .environmentObject(TasksModel())
+        Group {
+            TaskBox()
+            TaskBox()
+                .previewDevice("iPod touch (7th generation)")
+        }
+        .environmentObject(TasksModel())
     }
 }

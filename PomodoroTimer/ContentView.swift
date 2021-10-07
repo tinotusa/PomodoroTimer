@@ -23,7 +23,7 @@ struct ContentView: View {
             Color("background")
                 .ignoresSafeArea()
 
-                VStack {
+            ScrollView(showsIndicators: false) {
                     CountdownTimer(
                         hours: $hours,
                         minutes: $minutes,
@@ -60,7 +60,6 @@ private extension ContentView {
             Text("Rest")
                 .font(isSmallDevice ? .system(size: 16) : .title)
                 .menuButtonStyle()
-                
         }
     }
     
